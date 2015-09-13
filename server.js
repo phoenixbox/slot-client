@@ -5,7 +5,7 @@ var path = require('path');
 var config = require('config');
 var url = require('url');
 
-let loggedInRoute = '/slots'
+var loggedInRoute = '/slots'
 
 server.connection({
   host: '0.0.0.0',
@@ -36,7 +36,10 @@ var plugins = [
         }
       ]
     }
-  }
+  },
+  require('./lib/oauth'),
+  require('./lib/facebook'),
+  require('./lib/api/user'),
 ]
 
 server.register(plugins
