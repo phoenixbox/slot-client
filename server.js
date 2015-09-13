@@ -5,8 +5,6 @@ var path = require('path');
 var config = require('config');
 var url = require('url');
 
-var loggedInRoute = '/slots'
-
 server.connection({
   host: '0.0.0.0',
   port: process.env.PORT || 3700,
@@ -54,7 +52,7 @@ server.register(plugins
       path: '/',
       handler: function (request, reply) {
         if (request.auth.isAuthenticated) {
-          reply.redirect(loggedInRoute)
+          reply.redirect('/slots')
         } else {
           var viewVars = internals.viewVars(request);
           reply.view('home.html', viewVars);
@@ -63,7 +61,7 @@ server.register(plugins
     },
     {
       method: 'GET',
-      path: '/profile',
+      path: '/slots',
       config: {
         auth: 'session'
       },
