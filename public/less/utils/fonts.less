@@ -1,0 +1,10 @@
+@fontPath: '../fonts';
+@coffee-text-primary: "Something";
+@font-face {
+	font-family: 'something';
+	src: url('@{fontPath}/@{@coffee-text-primary}.eot');
+	src: url('@{fontPath}/@{@coffee-text-primary}.eot?#iefix') format('embedded-opentype'),
+	     url('@{fontPath}/@{@coffee-text-primary}.woff') format('woff'),
+	     url('@{fontPath}/@{@coffee-text-primary}.ttf') format('truetype'),
+	     url('@{fontPath}/@{@coffee-text-primary}.svg#webfont') format('svg');
+}
