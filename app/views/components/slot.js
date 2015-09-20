@@ -10,19 +10,19 @@ const OPTIONS = ['C', 'E', 'T'];
 let Slot = React.createClass({
 
   propTypes: {
-    spinning: React.PropTypes.bool,
-    targetIndex: React.PropTypes.number
+    spinning: React.PropTypes.bool.isRequired,
+    indexTarget: React.PropTypes.number.isRequired,
+    speed: React.PropTypes.number.isRequired
   },
 
   slotTransform(ix) {
-    let rotation = helpers.calculateRotation(ix, SLIDES);
+    let rotation = helpers.calculateRotation(ix, SLIDES, this.props.indexTarget);
 
-    return {"-webkit-transform": `rotateX(${rotation+30}deg) translateZ(${RADIUS}px)`};
+    return {"-webkit-transform": `rotateX(${rotation}deg) translateZ(${RADIUS}px)`};
   },
 
   slotSlides(targetIndex = 0) {
     return _.map(_.times(SLIDES), (ix) => {
-
       return <div className="poster" style={this.slotTransform(ix)}><p>{helpers.slideType(ix)}</p></div>
     })
   },
@@ -30,8 +30,8 @@ let Slot = React.createClass({
   ringStyles() {
     let ringStyles = {};
     let activateSpin = {};
-    let spinDuration = {"-webkit-animation-duration": "1s"}
-    _.assign(ringStyles, spinDuration)
+    let speed = {"-webkit-animation-duration": `${this.props.speed}s`}
+    _.assign(ringStyles, speed)
 
     if (this.props.spinning) {
       _.assign(ringStyles, { "-webkit-animation-name": "x-spin" })

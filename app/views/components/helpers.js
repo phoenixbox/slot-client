@@ -1,10 +1,9 @@
 import CoffeeslotsConfig from '../../utils/coffee-slots-config';
 
 module.exports = {
-  calculateRotation(ix, slideCount) {
+  calculateRotation(ix, slideCount, targetIndex=0) {
     var degreePerSlide = 360/slideCount;
-
-    return degreePerSlide * ix;
+    return (degreePerSlide * ix) - (degreePerSlide * targetIndex);
   },
   slideType(ix) {
     let type;

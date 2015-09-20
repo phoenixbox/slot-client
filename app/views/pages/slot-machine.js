@@ -13,11 +13,15 @@ import FacebookStore from '../../stores/facebook-store.js';
 import ReelsStore from '../../stores/reels-store.js';
 import SessionActions from '../../actions/session-actions.js';
 
+// Utils
+import CoffeeslotsConfig from '../../utils/coffee-slots-config';
+
 let internals = {
   getStateFromStores() {
     return {
       loading: FacebookStore.isLoading(),
-      spinning: ReelsStore.isSpinning()
+      spinning: ReelsStore.isSpinning(),
+      speed: ReelsStore.getSpinSpeed()
     }
   }
 }
@@ -61,10 +65,12 @@ let SlotMachine  = React.createClass({
       <div className={slotsClasses}>
         {content}
         <div className="col-xs-3 fh">
-          <ControlPanel spinning={this.state.spinning} />
+          <ControlPanel spinning={this.state.spinning}
+                           speed={this.state.speed} />
         </div>
         <div className="col-xs-9 fh">
-          <GameBoard spinning={this.state.spinning} />
+          <GameBoard spinning={this.state.spinning}
+                        speed={this.state.speed} />
         </div>
       </div>
     );
