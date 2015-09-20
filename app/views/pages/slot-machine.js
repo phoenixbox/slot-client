@@ -10,12 +10,14 @@ import GameBoard from '../components/game-board';
 
 // Flux
 import FacebookStore from '../../stores/facebook-store.js';
+import ReelsStore from '../../stores/reels-store.js';
 import SessionActions from '../../actions/session-actions.js';
 
 let internals = {
   getStateFromStores() {
     return {
-      loading: FacebookStore.isLoading()
+      loading: FacebookStore.isLoading(),
+      spinning: ReelsStore.isSpinning()
     }
   }
 }
@@ -39,6 +41,14 @@ let SlotMachine  = React.createClass({
     return <p>Finished Loading</p>
   },
 
+  componentDidMount() {
+    ReelsStore.addChangeListener(this._onChange)
+  },
+
+  componentWillUnmount() {
+    ReelsStore.removeChangeListener(this._onChange)
+  },
+
   render() {
     let slotsClasses = classnames({
       "inviter row": true,
@@ -51,7 +61,7 @@ let SlotMachine  = React.createClass({
       <div className={slotsClasses}>
         {content}
         <div className="col-xs-3">
-          <ControlPanel />
+          <ControlPanel spinning={this.state.spinning} />
         </div>
         <div className="col-xs-9">
           <GameBoard />

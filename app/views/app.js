@@ -17,7 +17,7 @@ let internals = {
 
     return {
       user: user,
-      facebook: FacebookStore.getFacebook()
+      facebook: FacebookStore.getFacebook(),
     }
   }
 }
