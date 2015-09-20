@@ -9,17 +9,6 @@ module.exports = {
     let type;
     let types = CoffeeslotsConfig.get('/SLIDE_TYPES');
     let baseIndex = ix % 3;
-
-    if (baseIndex === 0) {
-      type = 'C';
-    } else if (baseIndex === 1) {
-      type = 'E';
-    } else if (baseIndex === 2) {
-      type = 'T';
-    } else {
-      console.log('Not within options')
-    }
-
-    return type
+    return types[baseIndex];
   }
 }

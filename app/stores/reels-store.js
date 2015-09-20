@@ -64,7 +64,8 @@ let internals = ReelsStore.internals = {
     ReelsStore.setSpinning(true);
 
     let delayTime = _spinSpeed * 1000 * 1.1;
-    _.delay(function(spinState) {
+
+    _.delay( (spinState) => {
       ReelsStore.setSpinning(spinState);
     },  delayTime, false);
   },
