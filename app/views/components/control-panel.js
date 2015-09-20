@@ -22,9 +22,11 @@ let ControlPanel = React.createClass({
 
     return (
       <div className="control-panel col-xs-12">
-        <button className={playClasses}
-                 disabled={this.props.spinning}
-                  onClick={this.spinReels}>{buttonCopy}</button>
+        <div className="trigger">
+          <button className={playClasses}
+                   disabled={this.props.spinning}
+                    onClick={this.spinReels}>{buttonCopy}</button>
+        </div>
       </div>
     )
   }

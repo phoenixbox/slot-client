@@ -1,5 +1,23 @@
 .control-panel {
   height: 100%;
   width: 100%;
-  background-color: orange;
+  background-color: lighten(blue, 70%);;
+}
+.control-panel .trigger {
+  width: 70%;
+  height: 50px;
+  background-color: white;
+  position: relative;
+  margin: 0 auto;
+}
+.control-panel .trigger button {
+  .coffeeButton(@border: @coffee-brand-primary, @background: transparent);
+  width: 100%;
+  height: 100%;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.control-panel .trigger button.spinning {
+  .coffeeButton(@border: @coffee-brand-primary, @background: @coffee-brand-primary);
+  color: white;
 }

@@ -51,7 +51,7 @@ let SlotMachine  = React.createClass({
 
   render() {
     let slotsClasses = classnames({
-      "inviter row": true,
+      "slot-machine row": true,
       "spinner-visible": this.state.loading
     })
 
@@ -60,10 +60,10 @@ let SlotMachine  = React.createClass({
     return (
       <div className={slotsClasses}>
         {content}
-        <div className="col-xs-3">
+        <div className="col-xs-3 fh">
           <ControlPanel spinning={this.state.spinning} />
         </div>
-        <div className="col-xs-9">
+        <div className="col-xs-9 fh">
           <GameBoard />
         </div>
       </div>

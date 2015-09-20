@@ -12,8 +12,13 @@
 
 // Components
 @import "app";
-@import "components/game-board";
+@import "components/coffee-machine";
 @import "components/control-panel";
+@import "components/game-board";
+@import "components/game-result";
+@import "components/header";
+@import "components/slot";
+@import "pages/slot-machine";
 @import "overrides";
 
 html, body {
@@ -25,5 +30,7 @@ html, body {
 .app,
 #coffeeslots,
 .content {
+  position: absolute;
   height: 100%;
+  width: 100%;
 }
