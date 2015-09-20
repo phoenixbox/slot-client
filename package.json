@@ -102,7 +102,7 @@
     "build-test": "NODE_ENV=test browserify test/index.js -t rewireify -t babelify -t envify -d | exorcist -b './app' test/test-bundle.js.map > test/test-bundle.js",
     "start": "node server.js",
     "test": "NODE_ENV=test ./node_modules/karma/bin/karma start --browsers Firefox --single-run",
-    "unit-test": "mocha ./test/unit --compilers js:compiler.js --recursive",
+    "unit-test": "mocha ./test/unit --compilers js:babel/register --recursive",
     "watch-unit-test": "mocha ./test/unit --watch --compilers js:compiler.js --recursive",
     "integration-test": "mocha ./test/integration --compilers js:babel/register --recursive",
     "debug-integration-test": "mocha --debug-brk ./test/integration --watch --compilers js:babel/register --recursive",
