@@ -12,10 +12,18 @@
 
 // Components
 @import "app";
+@import "components/game-board";
+@import "components/control-panel";
 @import "overrides";
 
 html, body {
   color: @coffee-brand-primary;
   font-family: "Avenir-Next", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   -webkit-font-smoothing: antialiased;
+}
+
+.app,
+#coffeeslots,
+.content {
+  height: 100%;
 }

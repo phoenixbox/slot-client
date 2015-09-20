@@ -1,9 +1,16 @@
+// Libs
 import React from 'react/addons';
 import {Navigation} from 'react-router';
+import classnames from 'classnames';
+
+// Components
 import Spinner from 'react-spinner';
+import ControlPanel from '../components/control-panel';
+import GameBoard from '../components/game-board';
+
+// Flux
 import FacebookStore from '../../stores/facebook-store.js';
 import SessionActions from '../../actions/session-actions.js';
-import classnames from 'classnames';
 
 let internals = {
   getStateFromStores() {
@@ -33,18 +40,22 @@ let SlotMachine  = React.createClass({
   },
 
   render() {
-    let profileClasses = classnames({
-      "profile col-sm-12": true,
+    let slotsClasses = classnames({
+      "inviter row": true,
       "spinner-visible": this.state.loading
     })
 
-    let content = this.state.loading ? <Spinner /> : this.content();
+    let content = this.state.loading ? <Spinner /> : null;
 
     return (
-      <div className={profileClasses}>
+      <div className={slotsClasses}>
         {content}
-        <div className="col-xs-3">Control Panel</div>
-        <div className="col-xs-9">Slots</div>
+        <div className="col-xs-3">
+          <ControlPanel />
+        </div>
+        <div className="col-xs-9">
+          <GameBoard />
+        </div>
       </div>
     );
   },

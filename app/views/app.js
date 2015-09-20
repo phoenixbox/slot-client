@@ -47,11 +47,9 @@ let App = React.createClass({
     let headerProps = _.pluck(componentProps, ['displayName', 'email', 'id']);
 
     return (
-      <div className="container">
+      <div className="content">
         <Header {...headerProps} />
-        <div className="row-offcanvas row-offcanvas-left">
-          <RouteHandler {...componentProps} />
-        </div>
+        <RouteHandler {...componentProps} />
       </div>
     )
   },
