@@ -22,6 +22,12 @@ server.views({
   }
 });
 
+// Prevent Sleeping Dynos
+setInterval(function() {
+    http.get("http://coffeeslots.herokuapp.com");
+    http.get("http://coffeeslots-rails.herokuapp.com");
+}, 60000); // every minute
+
 var plugins = [
   {
     register: require('good'),
