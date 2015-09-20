@@ -6,18 +6,22 @@ import Slot from './slot';
 import GameResult from './game-result';
 
 let GameBoard = React.createClass({
+  propTypes: {
+    spinning: React.PropTypes.bool
+  },
+
   render() {
     return (
       <div className="game-board col-xs-12">
         <div className="row">
           <div className="col-xs-4">
-            <Slot />
+            <Slot spinning={this.props.spinning} />
           </div>
           <div className="col-xs-4">
-            <Slot />
+            <Slot spinning={this.props.spinning} />
           </div>
           <div className="col-xs-4">
-            <Slot />
+            <Slot spinning={this.props.spinning} />
           </div>
         </div>
         <CoffeeMachine / >

@@ -64,7 +64,7 @@ let SlotMachine  = React.createClass({
           <ControlPanel spinning={this.state.spinning} />
         </div>
         <div className="col-xs-9 fh">
-          <GameBoard />
+          <GameBoard spinning={this.state.spinning} />
         </div>
       </div>
     );
