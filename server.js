@@ -22,11 +22,13 @@ server.views({
   }
 });
 
-// Prevent Sleeping Dynos
-setInterval(function() {
-    http.get("http://coffeeslots.herokuapp.com");
-    http.get("http://coffeeslots-rails.herokuapp.com");
-}, 60000); // every minute
+if (process.env.NODE_ENV === 'production') {
+  // Prevent Sleeping Dynos
+  setInterval(function() {
+      http.get("http://coffeeslots.herokuapp.com");
+      http.get("http://coffeeslots-rails.herokuapp.com");
+  }, 60000); // every minute
+}
 
 var plugins = [
   {
@@ -106,11 +108,17 @@ module.exports.server = server;
 
 var internals = {
   viewVars: function(request) {
-    return request.auth.credentials ? internals.pluckAuthAttrs(request.auth.credentials.profile) : {};
+    var creds = request.auth.credentials ? internals.pluckAuthAttrs(request.auth.credentials.profile) : {};
+
+    if (process.env.NODE_ENV === 'production') {
+      _.assign(creds, {prod: true})
+    }
+
+    return creds
   },
 
   pluckAuthAttrs: function(profile) {
-    var authAttrs = ['access_token'];
+    var authAttrs = ['access_token', 'uuid', 'name', 'email'];
 
     return _.reduce(profile, function(memo, val, key) {
       if (_.contains(authAttrs, key)) {
