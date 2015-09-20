@@ -65,7 +65,7 @@
     "gulp-uglify": "^1.2.0",
     "gulp-util": "^3.0.6",
     "http": "0.0.0",
-    "jsdom": "*",
+    "jsdom": "^3.1.1",
     "keymirror": "^0.1.1",
     "less": "^2.5.0",
     "map-stream": "0.0.5",
@@ -83,7 +83,7 @@
     "require-dir": "^0.3.0",
     "rewireify": "^0.2.1",
     "s3": "^4.4.0",
-    "sinon": "^1.14.1",
+    "sinon": "^1.16.1",
     "superagent": "^1.3.0",
     "superagent-bluebird-promise": "^2.0.2",
     "tcomb-form": "^0.7.0",
@@ -104,9 +104,10 @@
     "test": "NODE_ENV=test ./node_modules/karma/bin/karma start --browsers Firefox --single-run",
     "unit-test": "mocha ./test/unit --compilers js:compiler.js --recursive",
     "watch-unit-test": "mocha ./test/unit --watch --compilers js:compiler.js --recursive",
-    "watch-test": "NODE_ENV=test ./node_modules/karma/bin/karma start",
-    "watchify": "watchify app -d -v -o 'exorcist -b './app' public/js/coffeeslots.js.map > public/js/coffeeslots.js'",
-    "watchify-test": "NODE_ENV=test watchify test/index.js -o 'exorcist -b './app' test/test-bundle.js.map > test/test-bundle.js' -t rewireify -t babelify -t envify -dv"
+    "integration-test": "mocha ./test/integration --compilers js:babel/register --recursive",
+    "debug-integration-test": "mocha --debug-brk ./test/integration --watch --compilers js:babel/register --recursive",
+    "watch-integration-test": "mocha ./test/integration --watch --compilers js:babel/register --recursive",
+    "watchify": "watchify app -d -v -o 'exorcist -b './app' public/js/coffeeslots.js.map > public/js/coffeeslots.js'"
   },
   "browserify": {
     "transform": [
