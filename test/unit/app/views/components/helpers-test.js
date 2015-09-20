@@ -10,4 +10,48 @@ describe('helpers', function() {
       assert.equal(result, target)
     })
   })
+  describe('#slideType', function() {
+    describe('type T', function() {
+      it('calculates slide type T for index', function() {
+        let result = helpers.slideType(5);
+        let target = 'T';
+
+        assert.equal(result, target)
+      })
+      it('calculates slide type T for index', function() {
+        let result = helpers.slideType(2);
+        let target = 'T';
+
+        assert.equal(result, target)
+      })
+    })
+    describe('type C', function() {
+      it('calculates slide type C for index', function() {
+        let result = helpers.slideType(3);
+        let target = 'C';
+
+        assert.equal(result, target)
+      })
+      it('calculates slide type C for index', function() {
+        let result = helpers.slideType(0);
+        let target = 'C';
+
+        assert.equal(result, target)
+      })
+    })
+    describe('type E', function() {
+      it('calculates slide type E for index', function() {
+        let result = helpers.slideType(4);
+        let target = 'E';
+
+        assert.equal(result, target)
+      })
+      it('calculates slide type E for index', function() {
+        let result = helpers.slideType(1);
+        let target = 'E';
+
+        assert.equal(result, target)
+      })
+    })
+  })
 })

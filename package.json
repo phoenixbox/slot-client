@@ -103,7 +103,7 @@
     "start": "node server.js",
     "test": "NODE_ENV=test ./node_modules/karma/bin/karma start --browsers Firefox --single-run",
     "unit-test": "mocha ./test/unit --compilers js:babel/register --recursive",
-    "watch-unit-test": "mocha ./test/unit --watch --compilers js:compiler.js --recursive",
+    "watch-unit-test": "mocha ./test/unit --watch --compilers js:babel/register --recursive",
     "integration-test": "mocha ./test/integration --compilers js:babel/register --recursive",
     "debug-integration-test": "mocha --debug-brk ./test/integration --watch --compilers js:babel/register --recursive",
     "watch-integration-test": "mocha ./test/integration --watch --compilers js:babel/register --recursive",
