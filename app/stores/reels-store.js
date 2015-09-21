@@ -13,6 +13,7 @@ let _targetIndexes = {
   2: 0
 }
 let _spinSpeed = 1;
+let _initialized = false;
 
 let ReelsStore = _.assign({}, EventEmitter.prototype, {
   emitChange() {
@@ -51,22 +52,41 @@ let ReelsStore = _.assign({}, EventEmitter.prototype, {
     return _spinSpeed;
   },
 
+  isWinner() {
+    if (_initialized) {
+      let values = _.values(_targetIndexes);
+
+      return !_.without(values, values[0]).length;
+    }
+  },
+
   setSpinSpeed(speed) {
     _spinSpeed = speed;
 
     this.emitChange();
+  },
+
+  setInitialized() {
+    if (!_initialized) {
+      _initialized = true;
+      this.emitChange();
+    }
   }
 });
 
 let internals = ReelsStore.internals = {
+  init() {
+    ReelsStore.setInitialized();
+  },
   spin() {
-    ReelsStore.randomizeTargetIndexes();
     ReelsStore.setSpinning(true);
-
     let delayTime = _spinSpeed * 1000 * 1.1;
 
     _.delay( (spinState) => {
+      ReelsStore.randomizeTargetIndexes();
       ReelsStore.setSpinning(spinState);
+      ReelsStore.setInitialized();
+
     },  delayTime, false);
   },
   randomize(indexes, n) {
@@ -84,6 +104,9 @@ let internals = ReelsStore.internals = {
 
 ReelsStore.dispatchToken = AppDispatcher.register(function(action) {
   switch(action.actionType) {
+    case ReelsConstants.INIT:
+      internals.init();
+      break;
     case ReelsConstants.SPIN:
       internals.spin();
       break;

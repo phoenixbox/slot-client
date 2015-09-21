@@ -4,6 +4,7 @@ import _ from 'lodash';
 
 // Flux
 import ReelsStore from '../../stores/reels-store';
+import ReelsActions from '../../actions/reels-actions';
 
 // Components
 import CoffeeMachine from './coffee-machine';
@@ -13,7 +14,8 @@ import GameResult from './game-result';
 let internals = {
   getStateFromStores() {
     return {
-      targetIndexes: ReelsStore.getTargetIndexes()
+      targetIndexes: ReelsStore.getTargetIndexes(),
+      winner: ReelsStore.isWinner()
     }
   }
 }
@@ -50,6 +52,8 @@ let GameBoard = React.createClass({
 
   componentDidMount() {
     ReelsStore.addChangeListener(this._onChange)
+    /* Uncomment init to test win state */
+    // ReelsActions.init();
   },
 
   componentWillUnmount() {
@@ -63,7 +67,9 @@ let GameBoard = React.createClass({
           {this.buildSlots()}
         </div>
         <CoffeeMachine / >
-        <GameResult / >
+        <GameResult spinning={this.props.spinning}
+                    targetIndexes={this.state.targetIndexes}
+                    winner={this.state.winner} />
       </div>
     )
   },
