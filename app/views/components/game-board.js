@@ -11,6 +11,9 @@ import CoffeeMachine from './coffee-machine';
 import Slot from './slot';
 import GameResult from './game-result';
 
+// Utils
+import helpers from './helpers';
+
 let internals = {
   getStateFromStores() {
     return {
@@ -31,12 +34,7 @@ let GameBoard = React.createClass({
   },
 
   buildSlots() {
-    let slotCount = _.keys(this.state.targetIndexes).length;
-    let colStyles = {
-      width: `${100/slotCount}%`,
-      float: 'left',
-      display: 'inline'
-    };
+    let colStyles = helpers.colStyles(_.keys(this.state.targetIndexes).length)
 
     return _.map(this.state.targetIndexes, (val, key) => {
         return (

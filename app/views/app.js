@@ -55,7 +55,6 @@ let App = React.createClass({
   },
 
   _onChange() {
-    console.log('Session store updated')
     this.setState(internals.getSessionFromStore());
   }
 });

@@ -10,5 +10,13 @@ module.exports = {
     let types = CoffeeslotsConfig.get('/SLIDE_TYPES');
     let baseIndex = ix % 3;
     return types[baseIndex];
+  },
+  colStyles(slotCount) {
+    return {
+      width: `${100/slotCount}%`,
+      float: 'left',
+      display: 'inline',
+      'text-align': 'center'
+    };
   }
 }

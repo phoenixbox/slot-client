@@ -1,6 +1,7 @@
 import React from 'react/addons';
 import _ from 'lodash';
 import CoffeeslotsConfig from '../../utils/coffee-slots-config';
+import helpers from './helpers'
 
 // Components
 import Result from './result'
@@ -13,8 +14,10 @@ let GameResult = React.createClass({
 
   resultList() {
     let resultNodes = _.map(this.props.targetIndexes, (val, key) => {
+      let colStyles = helpers.colStyles(_.keys(this.props.targetIndexes).length)
+
       return (
-        <li>
+        <li style={colStyles}>
           <Result key={val} typeIndex={val} />
         </li>
       )
