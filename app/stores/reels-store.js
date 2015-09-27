@@ -9,8 +9,8 @@ let _isSpinning = false;
 // Default Setup Indexes
 let indexReset = {
   0: 0,
-  1: 0,
-  2: 0
+  1: 1,
+  2: 2
 }
 let _targetIndexes = _.cloneDeep(indexReset);
 let _spinSpeed = 1;
@@ -84,8 +84,8 @@ let internals = ReelsStore.internals = {
     ReelsStore.setInitialized();
   },
   spin() {
-    ReelsStore.setSpinning(true);
     ReelsStore.resetIndexes();
+    ReelsStore.setSpinning(true);
     let delayTime = _spinSpeed * 1000 * 1.1;
 
     _.delay( (spinState) => {

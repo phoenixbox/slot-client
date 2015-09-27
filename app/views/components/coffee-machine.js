@@ -326,10 +326,10 @@ let CoffeeMachine = React.createClass({
     })
   },
 
-  componentDidUpdate(prevProps, prevState) {
-    if (this.props.winner) {
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.winner) {
       let allTypes = CoffeeslotsConfig.get('/SLIDE_TYPES');
-      let typeIndex = _.values(this.props.targetIndexes)[0];
+      let typeIndex = _.values(nextProps.targetIndexes)[0];
       let drinkType = allTypes[typeIndex];
       let drinkAngles = CoffeeslotsConfig.get('/SLIDE_TYPE_ANGLES');
 
