@@ -61,10 +61,11 @@ let GameBoard = React.createClass({
   render() {
     return (
       <div className="game-board col-xs-12">
+        <CoffeeMachine winner={this.state.winner}
+                targetIndexes={this.state.targetIndexes} />
         <div className="row">
           {this.buildSlots()}
         </div>
-        <CoffeeMachine />
         <GameResult spinning={this.props.spinning}
                     targetIndexes={this.state.targetIndexes}
                     winner={this.state.winner} />

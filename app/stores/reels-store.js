@@ -7,11 +7,12 @@ import moment from 'moment';
 
 let _isSpinning = false;
 // Default Setup Indexes
-let _targetIndexes = {
+let indexReset = {
   0: 0,
   1: 0,
   2: 0
 }
+let _targetIndexes = _.cloneDeep(indexReset);
 let _spinSpeed = 1;
 let _initialized = false;
 
@@ -30,6 +31,10 @@ let ReelsStore = _.assign({}, EventEmitter.prototype, {
 
   isSpinning() {
     return _isSpinning;
+  },
+
+  resetIndexes() {
+    _targetIndexes = _.cloneDeep(indexReset);
   },
 
   setSpinning(state) {
@@ -80,6 +85,7 @@ let internals = ReelsStore.internals = {
   },
   spin() {
     ReelsStore.setSpinning(true);
+    ReelsStore.resetIndexes();
     let delayTime = _spinSpeed * 1000 * 1.1;
 
     _.delay( (spinState) => {

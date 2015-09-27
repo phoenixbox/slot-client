@@ -1,5 +1,7 @@
 import React from 'react/addons';
 import classnames from 'classnames';
+import CoffeeslotsConfig from '../../utils/coffee-slots-config';
+import _ from 'lodash' ;
 
 var p = 100 / 30;
 var h = 250;
@@ -15,6 +17,11 @@ var gcoffee = "l()#60544F-#8c7a73:50-#60544F:50-#60544F";
 var gwater = "l()#B4D6DB-#D6EDEE:50-#B4D6DB:50-#B4D6DB";
 
 let CoffeeMachine = React.createClass({
+
+  propTypes: {
+    winner: React.PropTypes.bool,
+    targetIndexes: React.PropTypes.object
+  },
 
   chosen(a) {
     a = (a + 1080) % 360;
@@ -288,21 +295,6 @@ let CoffeeMachine = React.createClass({
       this.grp = this.s.g().insertBefore(this.tap);
 
       f.select("#pie-chart").remove();
-      f.select("#americano-area").click(() => {
-          this.chosen(0);
-      });
-      f.select("#latte-area").click(() => {
-          this.chosen(72);
-      });
-      f.select("#mocha-area").click(() => {
-          this.chosen(144);
-      });
-      f.select("#mochiatto-area").click(() => {
-          this.chosen(216);
-      });
-      f.select("#espresso-area").click(() => {
-          this.chosen(288);
-      });
       x = + this.top.attr("cx");
       y = + this.top.attr("cy");
       R = + this.top.attr("rx");
@@ -310,25 +302,6 @@ let CoffeeMachine = React.createClass({
       h = this.bot.attr("cy") - y;
       this.s.add(f.select("g"));
       this.lead.click(this.lidClickHandler);
-
-      this.knob.attr({
-          fill: "#000",
-          opacity: 0
-      }).drag((dx, dy, x, y) => {
-          var a = Snap.angle(this.knobcx, this.knobcy, x, y) - this.startAngle + angle;
-          this.dot.transform("r" + [a, this.knobcx, this.knobcy]);
-          this.arr.transform("r" + [a, this.knobcx, this.knobcy]);
-          this.lastAngle = a;
-      }, (x, y) => {
-          this.startAngle = Snap.angle(this.knobcx, this.knobcy, x, y);
-          this.lastAngle = angle;
-          this.dot.stop();
-          this.arr.stop();
-      }, () => {
-          angle = this.lastAngle;
-          var a = Snap.snapTo(72, angle, 36);
-          this.chosen(a);
-      });
 
       this.grp.path(this.outline(0, h)).attr("class", "outline");
       this.o3 = (h - 70) / 3;
@@ -351,6 +324,17 @@ let CoffeeMachine = React.createClass({
       this.pour();
       this.pieShow();
     })
+  },
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.winner) {
+      let allTypes = CoffeeslotsConfig.get('/SLIDE_TYPES');
+      let typeIndex = _.values(this.props.targetIndexes)[0];
+      let drinkType = allTypes[typeIndex];
+      let drinkAngles = CoffeeslotsConfig.get('/SLIDE_TYPE_ANGLES');
+
+      this.chosen(drinkAngles[drinkType]);
+    }
   },
 
   render() {
