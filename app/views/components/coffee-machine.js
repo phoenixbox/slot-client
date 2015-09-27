@@ -27,7 +27,7 @@ let CoffeeMachine = React.createClass({
         transform: to
     }, 1000, mina.elastic, () => {
         this.closeCup( () => {
-            this.types[a]();
+            this.types()[a]();
             this.pour();
             this.pieShow();
         });
@@ -129,6 +129,23 @@ let CoffeeMachine = React.createClass({
     }, 500, mina.easein, callback);
   },
 
+  lidClickHandler() {
+    var path;
+    var ease;
+    if (this.closed) {
+        path = this.leadOpenPath;
+        ease = mina.easein;
+        this.closed = 0;
+    } else {
+        path = this.leadClosedPath;
+        ease = mina.bounce;
+        this.closed = 1;
+    }
+    this.lead.stop().animate({
+        d: path
+    }, 1000, ease);
+  },
+
   pour() {
     this.steam(this.g, () => {
       Snap.animate(0, 90, (val) => {
@@ -152,7 +169,7 @@ let CoffeeMachine = React.createClass({
     var olda = 0
     var a;
 
-    return () => {
+    return (() => {
       var cof = this.pieCoffee;
       var type = this.pieType;
       a = 360 * cof / 2;
@@ -183,11 +200,69 @@ let CoffeeMachine = React.createClass({
         }
       });
       olda = a;
-    };
+    })();
+  },
+
+  types() {
+    return {
+        // americano
+        0: () => {
+            this.cover.attr("class", "water");
+            this.ct2.attr("fill", gwater);
+            this.middle = 10 + this.o3;
+            this.pieCoffee = 1 / 3;
+            this.pieType = "water";
+            this.pieTitle = "Americano";
+            gstream = "l(0,1,0,0)#60544F-#60544F:33-#B4D6DB";
+        },
+        // latté
+        72: () => {
+            this.cover.attr("class", "milk");
+            this.ct2.attr("fill", gmilk);
+            this.middle = 10 + this.o3 * 2;
+            this.pieCoffee = 2 / 3;
+            this.pieType = "milk";
+            this.pieTitle = "Latté";
+            gstream = "l(0,1,0,0)#60544F-#60544F:66-#fff";
+        },
+        // mocha
+        144: () => {
+            this.cover.attr("class", "milk");
+            this.ct2.attr("fill", gmilk);
+            this.middle = 10 + this.o3;
+            this.pieCoffee = 1 / 3;
+            this.pieType = "milk";
+            this.pieTitle = "Mocha";
+            gstream = "l(0,1,0,0)#60544F-#60544F:33-#fff";
+        },
+        // machiatto
+        216: () => {
+            this.cover.attr("class", "milk");
+            this.ct2.attr("fill", gmilk);
+            this.middle = 10 + this.o2;
+            this.pieCoffee = 1 / 2;
+            this.pieType = "milk";
+            this.pieTitle = "Machiatto";
+            gstream = "l(0,1,0,0)#60544F-#60544F:50-#fff";
+        },
+        // espresso
+        288: () => {
+            this.cover.attr("class", "coffee");
+            this.ct2.attr("fill", gcoffee);
+            this.middle = 10;
+            this.pieCoffee = 1;
+            this.pieType = "milk";
+            this.pieTitle = "Espresso";
+            gstream = "#60544F";
+        }
+    }
   },
 
   componentDidMount() {
-    this.s = new Snap('.coffee-machine-svg')
+    this.s = new Snap('.coffee-machine-svg');
+    this.lastAngle;
+    this.startAngle;
+    this.closed;
 
     Snap.load('/img/svg/coffee-machine.svg', (f) => {
       this.top = f.select("#top");
@@ -208,11 +283,8 @@ let CoffeeMachine = React.createClass({
           title: f.selectAll("#legend text")[2],
           waterBox: f.select("#legend rect:nth-child(2)")
       }
-      this.lastAngle;
-      this.startAngle;
       this.leadOpenPath = this.lead.attr("d");
       this.leadClosedPath = f.select("#lead-target").attr("d");
-      this.closed;
       this.grp = this.s.g().insertBefore(this.tap);
 
       f.select("#pie-chart").remove();
@@ -237,23 +309,7 @@ let CoffeeMachine = React.createClass({
       r = + this.bot.attr("rx");
       h = this.bot.attr("cy") - y;
       this.s.add(f.select("g"));
-
-      this.lead.click(() => {
-          var path;
-          var ease;
-          if (this.closed) {
-              path = this.leadOpenPath;
-              ease = mina.easein;
-              this.closed = 0;
-          } else {
-              path = this.leadClosedPath;
-              ease = mina.bounce;
-              this.closed = 1;
-          }
-          this.lead.stop().animate({
-              d: path
-          }, 1000, ease);
-      });
+      this.lead.click(this.lidClickHandler);
 
       this.knob.attr({
           fill: "#000",
@@ -290,60 +346,8 @@ let CoffeeMachine = React.createClass({
       this.pieType;
       this.g = this.grp.g();
       this.dr = this.grp.path(this.doors(0)).attr("class", "doors");
-      this.types = {
-          // americano
-          0: () => {
-              this.cover.attr("class", "water");
-              this.ct2.attr("fill", gwater);
-              this.middle = 10 + this.o3;
-              this.pieCoffee = 1 / 3;
-              this.pieType = "water";
-              this.pieTitle = "Americano";
-              gstream = "l(0,1,0,0)#60544F-#60544F:33-#B4D6DB";
-          },
-          // latté
-          72: () => {
-              this.cover.attr("class", "milk");
-              this.ct2.attr("fill", gmilk);
-              this.middle = 10 + this.o3 * 2;
-              this.pieCoffee = 2 / 3;
-              this.pieType = "milk";
-              this.pieTitle = "Latté";
-              gstream = "l(0,1,0,0)#60544F-#60544F:66-#fff";
-          },
-          // mocha
-          144: () => {
-              this.cover.attr("class", "milk");
-              this.ct2.attr("fill", gmilk);
-              this.middle = 10 + this.o3;
-              this.pieCoffee = 1 / 3;
-              this.pieType = "milk";
-              this.pieTitle = "Mocha";
-              gstream = "l(0,1,0,0)#60544F-#60544F:33-#fff";
-          },
-          // machiatto
-          216: () => {
-              this.cover.attr("class", "milk");
-              this.ct2.attr("fill", gmilk);
-              this.middle = 10 + this.o2;
-              this.pieCoffee = 1 / 2;
-              this.pieType = "milk";
-              this.pieTitle = "Machiatto";
-              gstream = "l(0,1,0,0)#60544F-#60544F:50-#fff";
-          },
-          // espresso
-          288: () => {
-              this.cover.attr("class", "coffee");
-              this.ct2.attr("fill", gcoffee);
-              this.middle = 10;
-              this.pieCoffee = 1;
-              this.pieType = "milk";
-              this.pieTitle = "Espresso";
-              gstream = "#60544F";
-          }
-      };
 
-      this.types[0]();
+      this.types()[0]();
       this.pour();
       this.pieShow();
     })
