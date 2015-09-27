@@ -23,7 +23,7 @@ let GameResult = React.createClass({
       )
     })
 
-    return <ul>{resultNodes}</ul>
+    return <ul className="result-list">{resultNodes}</ul>
   },
 
   winnerMessage() {

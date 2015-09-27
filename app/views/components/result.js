@@ -1,8 +1,6 @@
 import React from 'react/addons'
 import CoffeeslotsConfig from '../../utils/coffee-slots-config'
 
-// Components
-
 let Result = React.createClass({
   propTypes: {
     typeIndex: React.PropTypes.number
