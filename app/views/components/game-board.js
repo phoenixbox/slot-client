@@ -7,9 +7,9 @@ import ReelsStore from '../../stores/reels-store';
 import ReelsActions from '../../actions/reels-actions';
 
 // Components
-import CoffeeMachine from './coffee-machine';
 import Slot from './slot';
 import GameResult from './game-result';
+import CoffeeMachine from './coffee-machine';
 
 // Utils
 import helpers from './helpers';
@@ -64,7 +64,7 @@ let GameBoard = React.createClass({
         <div className="row">
           {this.buildSlots()}
         </div>
-        <CoffeeMachine / >
+        <CoffeeMachine />
         <GameResult spinning={this.props.spinning}
                     targetIndexes={this.state.targetIndexes}
                     winner={this.state.winner} />
