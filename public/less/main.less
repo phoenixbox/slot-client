@@ -19,11 +19,13 @@
 @import "components/header";
 @import "components/slot";
 @import "components/result";
+@import "pages/home";
 @import "pages/slot-machine";
 @import "overrides";
 
 html, body {
   color: @coffee-brand-primary;
+  font-family: @coffeeslots-text-regular, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-family: "Avenir-Next", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   -webkit-font-smoothing: antialiased;
 }
@@ -34,4 +36,34 @@ html, body {
   position: absolute;
   height: 100%;
   width: 100%;
+  background-image: linear-gradient(-180deg, #BE9E84 0%, #B08A70 100%);
+}
+.landing__hero .coffeeslots-home-logo {
+  .backgroundImage('../../img/coffeeslots-logo.png', contain);
+  width: 40%;
+  background-position: center;
+  height: 270px;
+  margin: 0 auto;
+  position: relative;
+  top: 150px;
+  display: block;
+}
+.landing__hero .landing__button {
+  font-family: @coffeeslots-text-regular;
+  color: @coffee-brand-accent;
+  display: block;
+  width: 320px;
+  display: block;
+  position: relative;
+  top: 170px;
+  text-align: center;
+  margin: 0 auto;
+  border-radius: 5px;
+  height: 50px;
+}
+.landing__hero .landing__button a {
+  .coffeeButton(@border: @coffee-brand-accent-fade, @background: @coffee-brand-primary);
+  font-size: 19px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
 }

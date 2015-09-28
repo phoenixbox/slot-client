@@ -21,7 +21,9 @@ let internals = {
     return {
       loading: FacebookStore.isLoading(),
       spinning: ReelsStore.isSpinning(),
-      speed: ReelsStore.getSpinSpeed()
+      speed: ReelsStore.getSpinSpeed(),
+      targetIndexes: ReelsStore.getTargetIndexes(),
+      winner: ReelsStore.isWinner()
     }
   }
 }
@@ -64,13 +66,11 @@ let SlotMachine  = React.createClass({
     return (
       <div className={slotsClasses}>
         {content}
-        <div className="col-xs-3 fh">
-          <ControlPanel spinning={this.state.spinning}
-                           speed={this.state.speed} />
+        <div className="col-xs-6 fh">
+          <ControlPanel {...this.state} />
         </div>
-        <div className="col-xs-9 fh">
-          <GameBoard spinning={this.state.spinning}
-                        speed={this.state.speed} />
+        <div className="col-xs-6 fh">
+          <GameBoard {...this.state} />
         </div>
       </div>
     );

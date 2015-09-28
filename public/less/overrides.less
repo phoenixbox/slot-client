@@ -6,7 +6,8 @@
   height: 40px;
   margin-top: 5px;
   margin-left: 10px;
-  
+  font-family: @coffeeslots-text-regular;
+
   @media (max-width: @screen-xs-max) {
     margin-left: 20px;
   }
@@ -15,37 +16,51 @@
   @media (min-width: @screen-lg-min) {
   }
 }
-.navbar.authed-navbar {
-  // background-color: #ffffff;
-  margin-bottom: 0;
-  color: white;
-  text-transform: uppercase;
-  border-radius: 0;
-
+#coffee-navbar-collapse,
+.navbar-nav {
+  cursor: pointer;
+  font-family: @coffeeslots-text-regular;
   a {
-    color: white;
+    color: @coffee-brand-secondary;
+    font-size: 20px;
+    border-bottom: 1px solid @coffee-brand-accent;
   }
   a:hover,
   a:active {
-    // background-color: #ffffff;
+    color: @coffee-brand-primary;
+    background-color: transparent;
+  }
+}
+.navbar.authed-navbar {
+  margin-bottom: 0;
+  text-transform: uppercase;
+  border-radius: 0;
+  background-color: #BF9E82;
+}
+.brand-logo {
+  .backgroundImage('../../img/coffeeslots-brand-gold.png', contain);
+  cursor: pointer;
+
+  &:hover,
+  &:active {
+    .backgroundImage('../../img/coffeeslots-brand.png', contain);
   }
 }
 .navbar.authed-navbar .container-fluid .navbar-brand {
   .navbar-constraints;
-  // .backgroundImage()
+  .brand-logo;
 }
-.navbar.party-navbar {
-  // background-color: #ffffff;
+.navbar.coffee-navbar  {
   border-radius: 0;
   margin-bottom: 0;
+  background-color: #BF9E82;
 }
-.navbar.party-navbar .container-fluid .navbar-brand {
+.navbar.coffee-navbar .container-fluid .navbar-brand {
   .navbar-constraints;
-  // .backgroundImage()
+  .brand-logo;
 }
 .navbar-toggle {
-  background-color: white;
+  background-image: linear-gradient(-180deg, #BE9E84 0%, #B08A70 100%);
 }
 .navbar-toggle span {
-  // background-color: #ffffff;
 }

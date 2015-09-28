@@ -41,9 +41,9 @@ let GameResult = React.createClass({
   },
 
   render() {
+    // {this.resultList()}
     return (
-      <div className="game-result col-xs-12">
-        {this.resultList()}
+      <div className="row game-result col-xs-12">
         {this.winnerMessage()}
       </div>
     )

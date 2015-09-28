@@ -1,7 +1,15 @@
 .game-result {
   height: 100%;
   width: 100%;
-  background-color: lighten(blue, 80%);
+
+  @media (max-width: @screen-xs-max) {
+  }
+  @media (min-width: @screen-sm-min) {
+  }
+  @media (min-width: @screen-lg-min) {
+    margin-top: 100px;
+  }
+
 }
 .game-result .winner-message,
 .game-result .winner-prize {

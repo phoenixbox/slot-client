@@ -1,51 +1,75 @@
-#stage {
-  margin: 160px auto 0;
-  width: 600px;
-  height: 280px;
+.slots {
+  display: block;
+  width: 100%;
+  height: auto;
+  background-color: grey;
+  margin: 0 auto;
+  position: relative;
 
+  @media (max-width: @screen-xs-max) {
+  }
+  @media (min-width: @screen-sm-min) {
+  }
+  @media (min-width: @screen-lg-min) {
+    max-width: 580px;
+    margin-top: 150px;
+  }
+}
+
+#stage {
+  height: 280px;
   -webkit-perspective: 10000;
 }
 
 #rotate {
-  margin: 0 auto;
-  width: 600px;
-  height: 400px;
-
+  width: 100%;
   -webkit-transform-style: preserve-3d;
 }
 
 .ring {
-  margin: 0 auto;
   height: 110px;
-  width: 600px;
   -webkit-transform-style: preserve-3d;
   -webkit-animation-iteration-count: infinite;
   -webkit-animation-timing-function: linear;
 }
 
 .ring > :nth-child(odd) {
-  background-color: #995C7F;
+  background-color: @coffee-brand-tertiary;
+  color: @coffee-brand-accent;
 }
 
 .ring > :nth-child(even) {
-  background-color: #835A99;
+  background-color: @coffee-brand-accent;
+  color: white;
 }
 
-.poster {
+.slide {
   position: absolute;
-  width: 150px;
-  height: 100px;
+  background-size: contain;
+  background-position: center;
+  width: 100%;
+  height: 99px;
   opacity: 1;
-  margin: 0 20%;
+  margin: 0 auto;
   color: white;
   -webkit-border-radius: 7px;
 }
-
-.poster > p {
-  font-size: 36px;
-  font-weight: bold;
-  text-align: center;
-  margin-top: 28px;
+.slide.coffee {
+  .backgroundImage('../../img/coffee.png', contain);
+}
+.slide.tea {
+  .backgroundImage('../../img/tea.png', contain);
+}
+.slide.espresso {
+  .backgroundImage('../../img/espresso.png', contain);
+}
+.slide > p {
+  position: absolute;
+  bottom: 0;
+  text-transform: uppercase;
+  font-size: 10px;
+  width: 100%;
+  color: black;
 }
 
 @-webkit-keyframes x-spin {
