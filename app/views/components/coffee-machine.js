@@ -340,7 +340,7 @@ let CoffeeMachine = React.createClass({
   render() {
     return (
       <div className="coffee-machine col-xs-12">
-        <svg className="coffee-machine-svg"></svg>
+        <svg viewBox="0 0 1050 800" className="coffee-machine-svg"></svg>
       </div>
     )
   }
