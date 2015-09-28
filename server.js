@@ -4,6 +4,7 @@ var server = new Hapi.Server();
 var path = require('path');
 var config = require('config');
 var url = require('url');
+var http = require('http');
 
 server.connection({
   host: '0.0.0.0',
@@ -25,7 +26,7 @@ server.views({
 if (process.env.NODE_ENV === 'production') {
   // Prevent Sleeping Dynos
   setInterval(function() {
-      http.get("http://coffeeslots.herokuapp.com");
+      http.get("http://coffeeslots-client.herokuapp.com");
       http.get("http://coffeeslots-rails.herokuapp.com");
   }, 60000); // every minute
 }
