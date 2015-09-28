@@ -5,7 +5,11 @@ import helpers from './helpers';
 // Components
 const SLIDES = 12;
 const RADIUS = 185;
-const OPTIONS = ['C', 'E', 'T'];
+const OPTIONS = {
+  'C': 'coffee',
+  'E': 'espresso',
+  'T': 'tea'
+}
 
 let Slot = React.createClass({
 
@@ -23,7 +27,12 @@ let Slot = React.createClass({
 
   slotSlides(targetIndex = 0) {
     return _.map(_.times(SLIDES), (ix) => {
-      return <div className="poster" style={this.slotTransform(ix)}><p>{helpers.slideType(ix)}</p></div>
+      let slideNameMap = ['coffee', 'espresso', 'tea'];
+      let slideClasses = `slide ${OPTIONS[helpers.slideType(ix)]}`;
+
+      return (
+        <div className={slideClasses} style={this.slotTransform(ix)}></div>
+      )
     })
   },
 
