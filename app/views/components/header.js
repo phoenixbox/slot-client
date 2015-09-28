@@ -11,7 +11,7 @@ let Header = React.createClass({
 
   render() {
     return (
-      <nav className="navbar party-navbar">
+      <nav className="navbar coffee-navbar">
         <div className="container-fluid">
           <div className="navbar-header">
             <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#coffee-navbar-collapse">
@@ -20,13 +20,11 @@ let Header = React.createClass({
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
             </button>
-            <Link className="navbar-brand" to={`/profile`}>CoffeeSlots</Link>
+            <Link className="navbar-brand" to={`/profile`}></Link>
           </div>
           <div className="collapse navbar-collapse" id="coffee-navbar-collapse">
-            <ul className="nav navbar-nav">
-              <li><a href="https://github.com/phoenixbox">Shane Rogers</a></li>
-            </ul>
             <ul className="nav navbar-nav navbar-right">
+              <li><a href="https://github.com/phoenixbox">Shane Rogers</a></li>
               <li><a href="/logout">Logout</a></li>
             </ul>
           </div>
