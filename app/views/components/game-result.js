@@ -3,6 +3,13 @@ import _ from 'lodash';
 import CoffeeslotsConfig from '../../utils/coffee-slots-config';
 import helpers from './helpers'
 
+// TODO: Compose this configuration
+const OPTIONS = {
+  'C': 'coffee',
+  'E': 'espresso',
+  'T': 'tea'
+}
+
 // Components
 import Result from './result'
 
@@ -30,11 +37,12 @@ let GameResult = React.createClass({
     if (this.props.winner) {
       let allTypes = CoffeeslotsConfig.get('/SLIDE_TYPES');
       let typeIndex = _.values(this.props.targetIndexes)[0];
+      let slideName = OPTIONS[helpers.slideType(typeIndex)];
 
       return (
         [
           <div className="winner-message">Congratulations!</div>,
-          <div className="winner-prize">{`You won a ${allTypes[typeIndex]}`}</div>
+          <div className="winner-prize">{`You won a ${slideName}`}</div>
         ]
       )
     }
