@@ -212,48 +212,8 @@ let CoffeeMachine = React.createClass({
 
   types() {
     return {
-        // americano
-        0: () => {
-            this.cover.attr("class", "water");
-            this.ct2.attr("fill", gwater);
-            this.middle = 10 + this.o3;
-            this.pieCoffee = 1 / 3;
-            this.pieType = "water";
-            this.pieTitle = "Americano";
-            gstream = "l(0,1,0,0)#60544F-#60544F:33-#B4D6DB";
-        },
-        // latté
-        72: () => {
-            this.cover.attr("class", "milk");
-            this.ct2.attr("fill", gmilk);
-            this.middle = 10 + this.o3 * 2;
-            this.pieCoffee = 2 / 3;
-            this.pieType = "milk";
-            this.pieTitle = "Latté";
-            gstream = "l(0,1,0,0)#60544F-#60544F:66-#fff";
-        },
-        // mocha
-        144: () => {
-            this.cover.attr("class", "milk");
-            this.ct2.attr("fill", gmilk);
-            this.middle = 10 + this.o3;
-            this.pieCoffee = 1 / 3;
-            this.pieType = "milk";
-            this.pieTitle = "Mocha";
-            gstream = "l(0,1,0,0)#60544F-#60544F:33-#fff";
-        },
-        // machiatto
-        216: () => {
-            this.cover.attr("class", "milk");
-            this.ct2.attr("fill", gmilk);
-            this.middle = 10 + this.o2;
-            this.pieCoffee = 1 / 2;
-            this.pieType = "milk";
-            this.pieTitle = "Machiatto";
-            gstream = "l(0,1,0,0)#60544F-#60544F:50-#fff";
-        },
         // espresso
-        288: () => {
+        0: () => {
             this.cover.attr("class", "coffee");
             this.ct2.attr("fill", gcoffee);
             this.middle = 10;
@@ -261,6 +221,26 @@ let CoffeeMachine = React.createClass({
             this.pieType = "milk";
             this.pieTitle = "Espresso";
             gstream = "#60544F";
+        },
+        // tea
+        72: () => {
+            this.cover.attr("class", "milk");
+            this.ct2.attr("fill", gwater);
+            this.middle = 10;
+            this.pieCoffee = 0 / 3;
+            this.pieType = "water";
+            this.pieTitle = "Tea";
+            gstream = "l(0,1,0,0)#60544F-#60544F:66-#fff";
+        },
+        // coffee
+        288: () => {
+            this.cover.attr("class", "water");
+            this.ct2.attr("fill", gwater);
+            this.middle = 10 + this.o3;
+            this.pieCoffee = 1 / 3;
+            this.pieType = "water";
+            this.pieTitle = "Coffee";
+            gstream = "l(0,1,0,0)#60544F-#60544F:33-#B4D6DB";
         }
     }
   },
@@ -320,7 +300,7 @@ let CoffeeMachine = React.createClass({
       this.g = this.grp.g();
       this.dr = this.grp.path(this.doors(0)).attr("class", "doors");
 
-      this.types()[0]();
+      this.types()[72]();
       this.pour();
       this.pieShow();
     })
