@@ -25,7 +25,9 @@ let internals = {
 let App = React.createClass({
 
   getInitialState() {
-    return internals.getSessionFromStore();
+    return _.assign({
+      lastTap: 0
+    }, internals.getSessionFromStore());
   },
 
   componentDidMount() {
@@ -38,6 +40,22 @@ let App = React.createClass({
     FacebookStore.removeChangeListener(this._onChange);
   },
 
+  /*
+    Mobile double tap muting to prevent unwanted content zoom.
+    Instead of adding a markup tag to control content scale which might
+    prevent zoom levels on non-mobile
+  */
+  muteDoubleTap(e) {
+    let timeBetweenTaps = e.timeStamp - this.state.lastTap
+
+    if (timeBetweenTaps < 500 && timeBetweenTaps > 0) {
+      e.preventDefault()
+    }
+    this.setState({
+      lastTap: e.timeStamp
+    })
+  },
+
   render() {
     let componentProps = _.cloneDeep(this.props);
 
@@ -47,7 +65,7 @@ let App = React.createClass({
     let headerProps = _.pluck(componentProps, ['displayName', 'email', 'id']);
 
     return (
-      <div className="content">
+      <div className="content" onTouchEnd={this.muteDoubleTap}>
         <Header {...headerProps} />
         <RouteHandler {...componentProps} />
       </div>
