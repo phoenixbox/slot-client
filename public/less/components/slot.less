@@ -7,7 +7,7 @@
   position: relative;
 
   @media (max-width: @screen-xs-max) {
-    margin-top: 145px;
+    margin-top: 135px;
   }
   @media (min-width: @screen-sm-min) {
     margin-top: 190px;
@@ -20,6 +20,10 @@
 
 #stage {
   height: 280px;
+
+  @media (max-width: @screen-xs-max) {
+    height: 250px;
+  }
   -webkit-perspective: 10000;
   perspective: 10000;
 }
