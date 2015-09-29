@@ -38,20 +38,20 @@ let GameResult = React.createClass({
       let allTypes = CoffeeslotsConfig.get('/SLIDE_TYPES');
       let typeIndex = _.values(this.props.targetIndexes)[0];
       let slideName = OPTIONS[helpers.slideType(typeIndex)];
+      let pre = helpers.vowelSound(slideName) ? 'an' : 'a';
 
       return (
         [
           <div className="winner-message">Congratulations!</div>,
-          <div className="winner-prize">{`You won a ${slideName}`}</div>
+          <div className="winner-prize">{`You won ${pre} ${slideName}`}</div>
         ]
       )
     }
   },
 
   render() {
-    // {this.resultList()}
     return (
-      <div className="row game-result col-xs-12">
+      <div className="game-result col-xs-12">
         {this.winnerMessage()}
       </div>
     )

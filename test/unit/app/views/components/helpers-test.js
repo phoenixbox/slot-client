@@ -10,6 +10,16 @@ describe('helpers', function() {
       assert.equal(result, target)
     })
   })
+  describe('#vowelSound', function() {
+    it('returns true for vowelSound', function() {
+      var testWord = 'accountant'
+      assert.isTrue(helpers.vowelSound(testWord))
+    })
+    it('returns false for non vowelSound', function() {
+      var testWord = 'doctor'
+      assert.isFalse(helpers.vowelSound(testWord))
+    })
+  })
   describe('#slideType', function() {
     describe('type T', function() {
       it('calculates slide type T for index', function() {

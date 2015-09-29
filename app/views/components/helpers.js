@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import CoffeeslotsConfig from '../../utils/coffee-slots-config';
 
 module.exports = {
@@ -18,5 +19,11 @@ module.exports = {
       display: 'inline',
       'text-align': 'center'
     };
+  },
+  vowelSound(word) {
+    let firstLetter = word.charAt(0).toLowerCase()
+    let vowelSounds = ['a','e','i','o','u']
+
+    return _.contains(vowelSounds, firstLetter)
   }
 }
