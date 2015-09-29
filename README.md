@@ -1,4 +1,5 @@
 ![CoffeeSlots](/../screenshots/public/img/screenshots/coffeeslots_readme.png?raw=true "CoffeeSlots")
+![slots](http://g.recordit.co/6Sa9ERiUuR.gif)
 ## CoffeeSlots
 ---
 <a href="https://app.wercker.com/project/bykey/ac95c2990e50548a947a86973540e674"><img alt="Wercker status" src="https://app.wercker.com/status/ac95c2990e50548a947a86973540e674/m"></a>
