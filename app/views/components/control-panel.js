@@ -7,6 +7,7 @@ import ReelsActions from '../../actions/reels-actions'
 
 // Components
 import Slot from './slot';
+import GameResult from './game-result';
 
 // Utils
 import helpers from './helpers';
@@ -55,6 +56,11 @@ let ControlPanel = React.createClass({
           <button className={playClasses}
                    disabled={this.props.spinning}
                     onClick={this.spinReels}>{buttonCopy}</button>
+        </div>
+        <div className="game-result-wrapper visible-xs visible-sm">
+          <GameResult spinning={this.props.spinning}
+                      targetIndexes={this.props.targetIndexes}
+                      winner={this.props.winner} />
         </div>
       </div>
     )
