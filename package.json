@@ -42,6 +42,7 @@
     "gulp-less": "^3.0.3",
     "gulp-rename": "^1.2.2",
     "gulp-sourcemaps": "^1.5.2",
+    "keymirror": "^0.1.1",
     "less": "^2.5.0",
     "mocha": "^2.2.4",
     "moment-timezone": "^0.4.0",
