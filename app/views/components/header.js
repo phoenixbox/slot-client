@@ -20,7 +20,7 @@ let Header = React.createClass({
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
             </button>
-            <Link className="navbar-brand" to={`/profile`}></Link>
+            <Link className="navbar-brand" to={`/slots`}></Link>
           </div>
           <div className="collapse navbar-collapse" id="coffee-navbar-collapse">
             <ul className="nav navbar-nav navbar-right">
