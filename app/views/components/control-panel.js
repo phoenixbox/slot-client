@@ -29,7 +29,7 @@ let ControlPanel = React.createClass({
 
     return _.map(this.props.targetIndexes, (val, key) => {
         return (
-          <div style={colStyles}>
+          <div key={`${key}:${val}`} style={colStyles}>
             <Slot spinning={this.props.spinning}
                indexTarget={val}
                       speed={this.props.speed}

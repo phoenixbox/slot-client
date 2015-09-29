@@ -22,7 +22,10 @@ let Slot = React.createClass({
   slotTransform(ix) {
     let rotation = helpers.calculateRotation(ix, SLIDES, this.props.indexTarget);
 
-    return {"-webkit-transform": `rotateX(${rotation}deg) translateZ(${RADIUS}px)`};
+    return {
+      "WebkitTransform": `rotateX(${rotation}deg) translateZ(${RADIUS}px)`,
+      "transform": `rotateX(${rotation}deg) translateZ(${RADIUS}px)`
+    };
   },
 
   slotSlides(targetIndex = 0) {
@@ -31,7 +34,7 @@ let Slot = React.createClass({
       let slideClasses = `slide ${OPTIONS[helpers.slideType(ix)]}`;
 
       return (
-        <div className={slideClasses} style={this.slotTransform(ix)}></div>
+        <div key={ix} className={slideClasses} style={this.slotTransform(ix)}></div>
       )
     })
   },
@@ -39,11 +42,17 @@ let Slot = React.createClass({
   ringStyles() {
     let ringStyles = {};
     let activateSpin = {};
-    let speed = {"-webkit-animation-duration": `${this.props.speed}s`}
+    let speed = {
+      "WebkitAnimationDuration": `${this.props.speed}s`,
+      "AnimationDuration": `${this.props.speed}s`
+    }
     _.assign(ringStyles, speed)
 
     if (this.props.spinning) {
-      _.assign(ringStyles, { "-webkit-animation-name": "x-spin" })
+      _.assign(ringStyles, {
+        "WebkitAnimationName": "x-spin",
+        "AnimationName": "x-spin"
+      })
     }
 
     return ringStyles;

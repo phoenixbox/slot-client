@@ -21,11 +21,13 @@
 #stage {
   height: 280px;
   -webkit-perspective: 10000;
+  perspective: 10000;
 }
 
 #rotate {
   width: 100%;
   -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
 }
 
 .ring {
@@ -33,6 +35,10 @@
   -webkit-transform-style: preserve-3d;
   -webkit-animation-iteration-count: infinite;
   -webkit-animation-timing-function: linear;
+
+  transform-style: preserve-3d;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
 }
 
 .ring > :nth-child(odd) {
@@ -55,6 +61,7 @@
   margin: 0 auto;
   color: white;
   -webkit-border-radius: 7px;
+  border-radius: 7px;
 }
 .slide.coffee {
   .backgroundImage('../../img/coffee.png', contain);
@@ -75,7 +82,16 @@
 }
 
 @-webkit-keyframes x-spin {
-  0%    { -webkit-transform: rotateX(0deg); }
-  50%   { -webkit-transform: rotateX(180deg); }
-  100%  { -webkit-transform: rotateX(360deg); }
+  0%    {
+    -webkit-transform: rotateX(0deg);
+    transform: rotateX(0deg);
+  }
+  50%   {
+    -webkit-transform: rotateX(180deg);
+    transform: rotateX(180deg);
+  }
+  100%  {
+    -webkit-transform: rotateX(360deg);
+    transform: rotateX(360deg);
+  }
 }

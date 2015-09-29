@@ -17,7 +17,7 @@ module.exports = {
       width: `${100/slotCount}%`,
       float: 'left',
       display: 'inline',
-      'text-align': 'center'
+      textAlign: 'center'
     };
   },
   vowelSound(word) {
