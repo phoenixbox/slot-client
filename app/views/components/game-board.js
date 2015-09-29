@@ -23,7 +23,7 @@ let GameBoard = React.createClass({
 
   render() {
     return (
-      <div className="game-board col-xs-12">
+      <div className="game-board hidden-xs hidden-sm col-xs-12">
         <CoffeeMachine winner={this.props.winner}
                 targetIndexes={this.props.targetIndexes} />
         <GameResult spinning={this.props.spinning}

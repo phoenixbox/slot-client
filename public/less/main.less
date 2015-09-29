@@ -37,29 +37,56 @@ html, body {
   height: 100%;
   width: 100%;
   background-image: linear-gradient(-180deg, #BE9E84 0%, #B08A70 100%);
+  @media (max-width: @screen-xs-max) {
+    height: 103%;
+  }
 }
 .landing__hero .coffeeslots-home-logo {
   .backgroundImage('../../img/coffeeslots-logo.png', contain);
-  width: 40%;
   background-position: center;
-  height: 270px;
   margin: 0 auto;
   position: relative;
-  top: 150px;
   display: block;
+
+  @media (max-width: @screen-xs-max) {
+    width: 80%;
+    height: 140px;
+    top: 30px;
+  }
+  @media (min-width: @screen-sm-min) {
+    width: 80%;
+    height: 140px;
+    top: 30px;
+  }
+  @media (min-width: @screen-lg-min) {
+    width: 40%;
+    height: 270px;
+    top: 150px;
+  }
 }
 .landing__hero .landing__button {
   font-family: @coffeeslots-text-regular;
   color: @coffee-brand-accent;
   display: block;
-  width: 320px;
   display: block;
   position: relative;
-  top: 170px;
   text-align: center;
   margin: 0 auto;
   border-radius: 5px;
   height: 50px;
+
+  @media (max-width: @screen-xs-max) {
+    width: 290px;
+    top: 80px;
+  }
+  @media (min-width: @screen-sm-min) {
+    width: 290px;
+    top: 80px;
+  }
+  @media (min-width: @screen-lg-min) {
+    width: 320px;
+    top: 170px;
+  }
 }
 .landing__hero .landing__button a {
   .coffeeButton(@border: @coffee-brand-accent-fade, @background: @coffee-brand-primary);
