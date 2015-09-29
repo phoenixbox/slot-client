@@ -24,7 +24,7 @@ let Header = React.createClass({
           </div>
           <div className="collapse navbar-collapse" id="coffee-navbar-collapse">
             <ul className="nav navbar-nav navbar-right">
-              <li><a href="https://github.com/phoenixbox">Shane Rogers</a></li>
+              <li><a target="_blank" href="https://github.com/phoenixbox">Shane Rogers</a></li>
               <li><a href="/logout">Logout</a></li>
             </ul>
           </div>
